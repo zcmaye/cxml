@@ -9,7 +9,7 @@ int main()
     using std::endl;
     clock_t start, end;
     start = clock();
-    CXMLNode *root = parse_from_string("\
+    CXMLNode *root = parse_from_std::string("\
         <bookstore company=\"codecat\" boss=\"man\">\n\
             <book category=\"CHILDREN\">\n\
                 <title>Harry Potter</title>\n\
@@ -24,7 +24,7 @@ int main()
                 <price>39.95 </price>\n\
             </book>\n\
         </bookstore>");
-    //cout << root->children.size() << endl;
+    //std::cout << root->children.size() << std::endl;
     if (CXML_PARSER_STATUS == CXML_SYNTAX_ERROR)
     {
         std::puts(">xml解析异常");
@@ -46,13 +46,13 @@ int main()
     {
         std::puts(">xpath解析成功");
     }
-    cout << "测试样例1:" << result1->text << endl;
-    cout << "测试样例2:" << result2->text << endl;
+    std::cout << "测试样例1:" << result1->text << std::endl;
+    std::cout << "测试样例2:" << result2->text << std::endl;
 
     end = clock();
-    cout << "\n函数运行花费:" << (double)(end - start) / CLOCKS_PER_SEC << "秒";
+    std::cout << "\n函数运行花费:" << (double)(end - start) / CLOCKS_PER_SEC << "秒";
     // CXMLNode *result = search("book", root);
-    // cout << result->children.size() << endl;
+    // std::cout << result->children.size() << std::endl;
     // using std::puts;
     // puts("解析到的属性:");
     // if (result->attr != nullptr)
@@ -60,7 +60,7 @@ int main()
     //     for (auto m : result->attr->attributes)
     //     {
     //         //属性
-    //         cout << "key:" << m.first << " value:" << m.second << endl;
+    //         std::cout << "key:" << m.first << " value:" << m.second << std::endl;
     //     }
     // }
     // //
@@ -68,7 +68,7 @@ int main()
     // for (auto m : result->children)
     // {
     //     //节点名称
-    //     cout << m->name << ":" << m->text->content << endl;
+    //     std::cout << m->name << ":" << m->text->content << std::endl;
     // }
     return 0;
 }

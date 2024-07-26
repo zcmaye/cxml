@@ -19,22 +19,22 @@ CXMLNode_text::CXMLNode_text()
     perv = next = nullptr;
     lens = 0;
 }
-string CXMLNode::get_name() const
+std::string CXMLNode::get_name() const
 {
-    string ret = "";
+    std::string ret = "";
     ret = this->name;
     return ret;
 }
-string CXMLNode::get_text() const
+std::string CXMLNode::get_text() const
 {
-    string ret = "";
+    std::string ret = "";
     CXMLNode_text *child = this->text;
     ret = child->content;
     return ret;
 }
-map<string, string> CXMLNode::get_attrs() const
+std::map<std::string, std::string> CXMLNode::get_attrs() const
 {
-    map<string, string> ret;
+    std::map<std::string, std::string> ret;
     CXMLNode_attr *child = this->attr;
     ret = child->attributes;
     return ret;
@@ -51,9 +51,9 @@ CXMLNode *CXMLNode::get_child() const
     ret = this->children.back();
     return ret;
 }
-vector<CXMLNode *> CXMLNode::get_children() const
+std::vector<CXMLNode *> CXMLNode::get_children() const
 {
-    vector<CXMLNode *> ret;
+    std::vector<CXMLNode *> ret;
     ret = this->children;
     return ret;
 }

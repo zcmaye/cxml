@@ -59,7 +59,7 @@ int main()
     using std::endl;
     clock_t start, end;
     start = clock();
-    CXMLNode *root = parse_from_string("\
+    CXMLNode *root = parse_from_std::string("\
         <bookstore company=\"codecat\" boss=\"man\">\n\
             <book category=\"CHILDREN\">\n\
                 <title>Harry Potter</title>\n\
@@ -74,7 +74,7 @@ int main()
                 <price>39.95 </price>\n\
             </book>\n\
         </bookstore>");
-    //cout << root->children.size() << endl;
+    //std::cout << root->children.size() << std::endl;
     if (CXML_PARSER_STATUS == CXML_SYNTAX_ERROR)
     {
         std::puts(">xml解析异常");
@@ -96,11 +96,11 @@ int main()
     {
         std::puts(">xpath解析成功");
     }
-    cout << "测试样例1:" << result1->text << endl;
-    cout << "测试样例2:" << result2->text << endl;
+    std::cout << "测试样例1:" << result1->text << std::endl;
+    std::cout << "测试样例2:" << result2->text << std::endl;
 
     end = clock();
-    cout << "\n\n函数运行花费:" << (double)(end - start) / CLOCKS_PER_SEC << "秒";
+    std::cout << "\n\n函数运行花费:" << (double)(end - start) / CLOCKS_PER_SEC << "秒";
     return 0;
 }
 ```
@@ -189,9 +189,9 @@ parser.hpp
 ### 2.如何解析
 
 ```c++
-CXMLNode *parse_from_string(const string cxml);
+CXMLNode *parse_from_std::string(const std::string cxml);
 
-CXMLNode *parse_from_string(const string cxml)
+CXMLNode *parse_from_std::string(const std::string cxml)
 {
     //如果为空直接返回异常
     if (cxml.length() == 0)
@@ -199,7 +199,7 @@ CXMLNode *parse_from_string(const string cxml)
         CXML_PARSER_STATUS = CXML_CONTENT_EMPTY;
         return nullptr;
     }
-    string str = cxml;
+    std::string str = cxml;
     //删除DOCTYPE这一行
     if (str.find("!DOCTYPE") < maxLength)
     {
@@ -266,7 +266,7 @@ CXMLNode *parse_from_string(const string cxml)
       "Node": {
         "name": {
           "__r_": {
-            "std::__compressed_pair_elem<std::basic_string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
+            "std::__compressed_std::pair_elem<std::basic_std::string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
           }
         },
         "next": "NULL",
@@ -274,7 +274,7 @@ CXMLNode *parse_from_string(const string cxml)
       },
       "content": {
         "__r_": {
-          "std::__compressed_pair_elem<std::basic_string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
+          "std::__compressed_std::pair_elem<std::basic_std::string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
         }
       },
       "parent": {
@@ -395,15 +395,15 @@ CXMLNode *parse_from_string(const string cxml)
 ```
 我在这里建树的思路是：
 
-建立一个 stack 堆，将标签<name>都丢进去，一层一层，如果遇到</name>的，就将 stack 栈顶 pop 出来，代表当前节点已经废弃，并且入栈的时候按照的是父子关系，因为如果有不是子的就已经 pop 出去了，所以我们很容易建立一个关系
+建立一个 std::stack 堆，将标签<name>都丢进去，一层一层，如果遇到</name>的，就将 std::stack 栈顶 pop 出来，代表当前节点已经废弃，并且入栈的时候按照的是父子关系，因为如果有不是子的就已经 pop 出去了，所以我们很容易建立一个关系
 
 递归处理
 
 ```c++
-CXMLNode *parse_node(const string cxml, CXMLNode *root)
+CXMLNode *parse_node(const std::string cxml, CXMLNode *root)
 {
     std::puts("==========");
-    string str = cxml;
+    std::string str = cxml;
     strip(str);
     if (str.find("<") > maxLength)
         return nullptr;
@@ -411,7 +411,7 @@ CXMLNode *parse_node(const string cxml, CXMLNode *root)
     root = parse_node_element_attr(str, root);
     root = parse_node_element_text(str, root);
     //如果解析名称为单口标签
-    //cout << root->name << " " << st.top()->name << std::endl;
+    //std::cout << root->name << " " << st.top()->name << std::endl;
     if (is_open(root->name) == true)
     {
         //递归下一个
@@ -420,24 +420,24 @@ CXMLNode *parse_node(const string cxml, CXMLNode *root)
     {
         strip(str);
         str.erase(0, str.find("</" + root->name + ">") + root->name.length() + 3);
-        cout << "出栈" << root->name << std::endl;
+        std::cout << "出栈" << root->name << std::endl;
         CXMLNode *brother = new CXMLNode();
         //st.top()->parent->children.push_back(brother);
         st.pop();
-        cout << "栈顶元素:" << st.top()->name << std::endl;
+        std::cout << "栈顶元素:" << st.top()->name << std::endl;
         parse_node(str, brother);
     }
     else
     {
         strip(str);
         str = str.substr(str.find(">") + 1);
-        //cout << str << std::endl;
+        //std::cout << str << std::endl;
         CXMLNode *child = new CXMLNode();
         root->parent = st.top();
-        cout << "栈顶元素:" << st.top()->name << std::endl;
+        std::cout << "栈顶元素:" << st.top()->name << std::endl;
         st.top()->children.push_back(root);
         st.push(root);
-        cout << "入栈:" << root->name << std::endl;
+        std::cout << "入栈:" << root->name << std::endl;
 
         //root->children.push_back(child);
         parse_node(str, child);
@@ -455,7 +455,7 @@ CXMLNode *parse_node(const string cxml, CXMLNode *root)
 ##### 常量名
 
 ```c++
-const string options[] = {
+const std::string options[] = {
     "get_parent_node",                // /.. 选择父元素 ✅
     "get_this_node",                  // /. 选择当前元素 ✅
     "get_all_nodes",                  // /* 匹配任意元素
@@ -474,7 +474,7 @@ const string options[] = {
 ##### 双指针算法入队
 
 ```c++
-bool get_xpath_option(const string exp)
+bool get_xpath_option(const std::string exp)
 {
     int l(0), r(0);
     int len = 0;
@@ -494,14 +494,14 @@ bool get_xpath_option(const string exp)
                     break;
                 r++;
             }
-            string tmp_option = exp.substr(l, r - l);
-            //cout << tmp_option << " ";
+            std::string tmp_option = exp.substr(l, r - l);
+            //std::cout << tmp_option << " ";
             queue_option.push(parse_option(tmp_option));
         }
         len = r;
         l = r;
     }
-    //string name = exp.substr(0, len);
+    //std::string name = exp.substr(0, len);
     return true;
 }
 ```
@@ -512,14 +512,14 @@ bool get_xpath_option(const string exp)
 bool do_xpath_option(CXMLNode *root, CXMLNode_result *result)
 {
     CXMLNode *node = root;
-    string ret_text;
+    std::string ret_text;
     while (queue_option.empty() == false)
     {
-        pair<string, string> op = queue_option.front();
+        std::pair<std::string, std::string> op = queue_option.front();
         queue_option.pop();
-        string option = op.first;
-        string name = op.second;
-        //cout << option << " " << name << endl;
+        std::string option = op.first;
+        std::string name = op.second;
+        //std::cout << option << " " << name << std::endl;
         switch (str2int(option.c_str()))
         {
         case str2int("get_node_from_genera_by_name"):
@@ -575,12 +575,12 @@ bool do_xpath_option(CXMLNode *root, CXMLNode_result *result)
 搜索全部文本名称
 
 ```c++
-string xpath_get_texts_from_genera(CXMLNode *root)
+std::string xpath_get_texts_from_genera(CXMLNode *root)
 {
-    pair<CXMLNode *, bool> d;
-    queue<CXMLNode *> q;
+    std::pair<CXMLNode *, bool> d;
+    std::queue<CXMLNode *> q;
     q.push(root);
-    string ret;
+    std::string ret;
     while (!q.empty())
     {
         auto p = q.front();
@@ -601,9 +601,9 @@ string xpath_get_texts_from_genera(CXMLNode *root)
 搜索符合条件的元素
 
 ```c++
-map<CXMLNode *, bool> used;
+std::map<CXMLNode *, bool> used;
 //选择当前元素后代元素中的name元素
-CXMLNode *xpath_get_node_from_genera_by_name(const string name, CXMLNode *root)
+CXMLNode *xpath_get_node_from_genera_by_name(const std::string name, CXMLNode *root)
 {
     if (root->name == name)
     {
@@ -632,15 +632,15 @@ CXMLNode *xpath_get_node_from_genera_by_name(const string name, CXMLNode *root)
 
 vector 动态数组
 
-map 哈希表
+std::map 哈希表
 
-string 字符串
+std::string 字符串
 
-pair 元组
+std::pair 元组
 
-stack 栈
+std::stack 栈
 
-queue 队列
+std::queue 队列
 
 #### 6.用到的算法
 

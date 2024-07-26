@@ -10,8 +10,8 @@
 
 #include "cxml.hpp"
 #include <queue>
-bool get_xpath_option(const string exp);
+bool get_xpath_option(const std::string exp);
 bool do_xpath_option(CXMLNode *root, CXMLNode_result &result);
-const CXMLNode_result *xpath(const string exp, CXMLNode *root);
+const CXMLNode_result *xpath(const std::string exp, CXMLNode *root);
 
 #endif
