@@ -1,5 +1,8 @@
 ﻿#include "cxml.hpp"
 
+namespace cxml
+{
+
 //设置解析状态
 int CXML_PARSER_STATUS = CXML_PARSER_SUCCESS;
 //节点栈
@@ -249,3 +252,4 @@ CXMLNode *parse_from_string(const std::string cxml)
 //     }
 //     return nullptr;
 // }
+}

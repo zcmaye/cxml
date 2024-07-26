@@ -1,5 +1,6 @@
 ﻿#include "cxml_class.hpp"
-
+namespace cxml
+{
 CXMLNode_attr::CXMLNode_attr()
 {
     next = perv = nullptr;
@@ -60,4 +61,5 @@ std::vector<CXMLNode *> CXMLNode::get_children() const
 CXMLNode_result::CXMLNode_result()
 {
     element = nullptr;
+}
 }

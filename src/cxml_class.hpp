@@ -5,6 +5,9 @@
 #include <map>
 #include <vector>
 
+namespace cxml
+{
+
 class Node
 {
 public:
@@ -69,5 +72,5 @@ public:
     std::string text;                 //结果文本
     CXMLNode_result();
 };
-
+}
 #endif

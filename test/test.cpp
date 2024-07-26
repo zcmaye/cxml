@@ -9,7 +9,7 @@ int main()
     using std::endl;
     clock_t start, end;
     start = clock();
-    CXMLNode *root = parse_from_std::string("\
+    CXMLNode *root = parse_from_string("\
         <bookstore company=\"codecat\" boss=\"man\">\n\
             <book category=\"CHILDREN\">\n\
                 <title>Harry Potter</title>\n\
