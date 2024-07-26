@@ -266,7 +266,7 @@ CXMLNode *parse_from_string(const string cxml)
       "Node": {
         "name": {
           "__r_": {
-            "std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, 0, false>": []
+            "std::__compressed_pair_elem<std::basic_string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
           }
         },
         "next": "NULL",
@@ -274,7 +274,7 @@ CXMLNode *parse_from_string(const string cxml)
       },
       "content": {
         "__r_": {
-          "std::__1::__compressed_pair_elem<std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__rep, 0, false>": []
+          "std::__compressed_pair_elem<std::basic_string<char, std::char_traits<char>, std::allocator<char> >::__rep, 0, false>": []
         }
       },
       "parent": {

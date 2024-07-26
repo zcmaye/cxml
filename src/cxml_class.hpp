@@ -1,12 +1,12 @@
-#ifndef __CXMLCLASS__H_
+﻿#ifndef __CXMLCLASS__H_
 #define __CXMLCLASS__H_
 #include <cstring>
 #include <iostream>
 #include <map>
 #include <vector>
-using std::__1::map;
-using std::__1::string;
-using std::__1::vector;
+using std::map;
+using std::string;
+using std::vector;
 
 class Node
 {

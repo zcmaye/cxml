@@ -1,4 +1,4 @@
-#ifndef __XPATH__H_
+﻿#ifndef __XPATH__H_
 #define __XPATH__H_
 
 #define XPATH_PARSE_SUCCESS 0

@@ -1,5 +1,6 @@
-#include "src/parser.hpp"
+﻿#include "src/parser.hpp"
 #include "src/xpath.hpp"
+#include <time.h>
 extern int CXML_PARSER_STATUS; //解析状态
 extern int XPATH_PARSE_STATUE;
 int main()

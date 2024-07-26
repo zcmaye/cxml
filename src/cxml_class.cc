@@ -1,4 +1,4 @@
-#include "cxml_class.hpp"
+﻿#include "cxml_class.hpp"
 
 CXMLNode_attr::CXMLNode_attr()
 {

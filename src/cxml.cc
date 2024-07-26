@@ -1,6 +1,6 @@
-#include "cxml.hpp"
+﻿#include "cxml.hpp"
 using std::cout;
-using std::__1::stack;
+using std::stack;
 //设置解析状态
 int CXML_PARSER_STATUS = CXML_PARSER_SUCCESS;
 //节点栈

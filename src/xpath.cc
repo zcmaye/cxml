@@ -1,8 +1,8 @@
-#include "xpath.hpp"
+﻿#include "xpath.hpp"
 using std::cout;
 using std::endl;
-using std::__1::pair;
-using std::__1::queue;
+using std::pair;
+using std::queue;
 typedef queue<pair<string, string> > qpss;
 qpss queue_option; //储存操作类型和名称
 int XPATH_PARSE_STATUE = XPATH_PARSE_SUCCESS;
@@ -339,7 +339,7 @@ const CXMLNode_result *xpath(const string exp, CXMLNode *root)
         get_xpath_option(exp);
         do_xpath_option(root, ret);
     }
-    catch (const std::exception &e)
+    catch (const std::exception &)
     {
         XPATH_PARSE_STATUE = XPATH_SYNTAX_ERROR;
         return nullptr;

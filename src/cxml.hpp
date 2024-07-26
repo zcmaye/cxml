@@ -1,4 +1,4 @@
-#ifndef __CXML__H_
+﻿#ifndef __CXML__H_
 #define __CXML__H_
 
 #define CXML_PARSER_SUCCESS 0
