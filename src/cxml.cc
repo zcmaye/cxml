@@ -28,7 +28,7 @@ void strip(std::string &str)
     str = ptr;
 }
 //判断是否是单口标签
-bool is_open(std::string name)
+bool is_open(const std::string& name)
 {
     for (int i = 0; i < 16; i++)
     {
@@ -40,7 +40,7 @@ bool is_open(std::string name)
     return false;
 }
 
-std::string find_rigth_element_name(const std::string cxml)
+std::string find_rigth_element_name(const std::string& cxml)
 {
     std::string name;
     std::string str = cxml;
@@ -59,7 +59,7 @@ void debug_stack()
     std::cout << st.size() << "\n";
 }
 //解析节点文字
-CXMLNode *parse_node_element_text(const std::string cxml, CXMLNode *root)
+CXMLNode *parse_node_element_text(const std::string& cxml, CXMLNode *root)
 {
     CXMLNode_text *node_text = new CXMLNode_text();
     if (is_open(root->name))
@@ -82,7 +82,7 @@ CXMLNode *parse_node_element_text(const std::string cxml, CXMLNode *root)
     return root;
 }
 //解析节点属性
-CXMLNode *parse_node_element_attr(const std::string cxml, CXMLNode *root)
+CXMLNode *parse_node_element_attr(const std::string& cxml, CXMLNode *root)
 {
     std::string str = cxml;
     std::string attr_name, attr_value;
@@ -109,7 +109,7 @@ CXMLNode *parse_node_element_attr(const std::string cxml, CXMLNode *root)
     return root;
 }
 //解析节点名称
-CXMLNode *parse_node_element_name(const std::string cxml, CXMLNode *root)
+CXMLNode *parse_node_element_name(const std::string& cxml, CXMLNode *root)
 {
     size_t blank_pos = cxml.find(" ");
     size_t l_pos = cxml.find("<");
@@ -138,7 +138,7 @@ CXMLNode *parse_node_element_name(const std::string cxml, CXMLNode *root)
 }
 
 //解析节点
-CXMLNode *parse_node(const std::string cxml, CXMLNode *root)
+CXMLNode *parse_node(const std::string& cxml, CXMLNode *root)
 {
     //std::puts("==========");
     std::string str = cxml;
@@ -201,7 +201,7 @@ CXMLNode *parse_node(const std::string cxml, CXMLNode *root)
     return root;
 }
 //从字符串解析xml
-CXMLNode *parse_from_string(const std::string cxml)
+CXMLNode *parse_from_string(const std::string& cxml)
 {
     //如果为空直接返回异常
     if (cxml.length() == 0)

@@ -18,12 +18,12 @@ namespace cxml
 {
 bool is_blank(char c);
 void strip(std::string &str);
-bool is_open(std::string name);
-CXMLNode *parse_node_element_text(const std::string cxml, CXMLNode *root);
-CXMLNode *parse_node_element_attr(const std::string cxml, CXMLNode *root);
-CXMLNode *parse_node_element_name(const std::string cxml, CXMLNode *root);
-CXMLNode *parse_node(const std::string cxml, CXMLNode *root);
-CXMLNode *parse_from_string(const std::string cxml);
+bool is_open(const std::string& name);
+CXMLNode *parse_node_element_text(const std::string& cxml, CXMLNode *root);
+CXMLNode *parse_node_element_attr(const std::string& cxml, CXMLNode *root);
+CXMLNode *parse_node_element_name(const std::string& cxml, CXMLNode *root);
+CXMLNode *parse_node(const std::string& cxml, CXMLNode *root);
+CXMLNode *parse_from_string(const std::string& cxml);
 CXMLNode *search(const std::string target, CXMLNode *root);
 }
 

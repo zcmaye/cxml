@@ -237,7 +237,7 @@ std::string xpath_get_attr_from_this(const std::string name, CXMLNode *root)
     return ret;
 }
 //将操作入队 双指针算法入队
-bool get_xpath_option(const std::string exp)
+bool get_xpath_option(const std::string& exp)
 {
     int l(0), r(0);
     int len = 0;
@@ -330,7 +330,7 @@ bool do_xpath_option(CXMLNode *root, CXMLNode_result *result)
 }
 
 //返回xpath解析内容
-const CXMLNode_result *xpath(const std::string exp, CXMLNode *root)
+const CXMLNode_result *xpath(const std::string& exp, CXMLNode *root)
 {
     const char *ptr = exp.c_str();
     CXMLNode_result *ret = new CXMLNode_result();

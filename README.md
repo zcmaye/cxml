@@ -189,9 +189,9 @@ parser.hpp
 ### 2.如何解析
 
 ```c++
-CXMLNode *parse_from_std::string(const std::string cxml);
+CXMLNode *parse_from_std::string(const std::string& cxml);
 
-CXMLNode *parse_from_std::string(const std::string cxml)
+CXMLNode *parse_from_std::string(const std::string& cxml)
 {
     //如果为空直接返回异常
     if (cxml.length() == 0)
@@ -400,7 +400,7 @@ CXMLNode *parse_from_std::string(const std::string cxml)
 递归处理
 
 ```c++
-CXMLNode *parse_node(const std::string cxml, CXMLNode *root)
+CXMLNode *parse_node(const std::string& cxml, CXMLNode *root)
 {
     std::puts("==========");
     std::string str = cxml;
@@ -474,7 +474,7 @@ const std::string options[] = {
 ##### 双指针算法入队
 
 ```c++
-bool get_xpath_option(const std::string exp)
+bool get_xpath_option(const std::string& exp)
 {
     int l(0), r(0);
     int len = 0;
